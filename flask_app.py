@@ -46,8 +46,9 @@ def index():
             print('File saved sucessfully')
             #send to pipeline model
             results = pipeline_model(path_save,scaler,model_sgd)
+            hei = getheight(path_save)
             print(results)
-            return render_template('upload.html',fileupload=True,data=results,image_filename=filename)
+            return render_template('upload.html',fileupload=True,data=results,image_filename=filename,height = hei)
             
         else:
             print('Use only the extensions with  .jpg, .png, .jpeg')    
@@ -57,6 +58,13 @@ def index():
         return render_template('upload.html')
 
 
+def getheight(path):
+    img = skimage.io.imread(path)
+    h,w,_ = img.shape
+    aspect = h/w
+    given_width = 300
+    height = given_width*aspect
+    return height
 
 def pipeline_model(path,scaler_transform,model_sgd):
     # pipeline model
