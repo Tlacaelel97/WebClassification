@@ -47,13 +47,11 @@ def index():
             #send to pipeline model
             results = pipeline_model(path_save,scaler,model_sgd)
             print(results)
+            return render_template('upload.html',fileupload=True,data=results,image_filename=filename)
             
         else:
             print('Use only the extensions with  .jpg, .png, .jpeg')    
-            return render_template('error.html')
-
-
-        return render_template('upload.html')
+            return render_template('upload.html')
 
     else:
         return render_template('upload.html')

@@ -37,6 +37,32 @@
       </div>
 </div>
 
+{% if fileupload %}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-8">
+            <table>
+                <tr>
+                    <th>Label</th>
+                    <th>Confidence score</th>
+                </tr>
+                {% for name,score in data.items() %}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ score }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="col col-4">
+            <img src="/static/upload/{{ image_filename }}" alt="Uploaded image">
+        </div>
+    </div>
+
+</div>
+{% endif %}
+
 <style>
     #myrow{
         background-color:#EAECEE;
