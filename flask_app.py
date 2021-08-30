@@ -29,6 +29,21 @@ scaler_path = os.path.join(MODEL_PATH,'dsa_scaler.pickle')
 model_sgd = pickle.load(open(model_sgd_path,'rb'))
 scaler = pickle.load(open(scaler_path,'rb'))
 
+@app.errorhandler(404)
+def error404(error):
+    message = "ERROR 404 OCURRED. PAGE NOT FOUND. Please go to the home page and try again"
+    return render_template("error.html", message=message)
+
+@app.errorhandler(405)
+def error404(error):
+    message = "ERROR 405. Method not found"
+    return render_template("error.html", message = message)
+
+@app.errorhandler(500)
+def error404(error):
+    message = "INTERNAL ERROR. Error occurs in the program "
+    return render_template("error.html", message = message)
+
 @app.route('/',methods=['GET','POST'])
 def index():
     if request.method == "POST":
@@ -48,11 +63,12 @@ def index():
             results = pipeline_model(path_save,scaler,model_sgd)
             hei = getheight(path_save)
             print(results)
-            return render_template('upload.html',fileupload=True,data=results,image_filename=filename,height = hei)
+            return render_template('upload.html',fileupload=True,extension=False,data=results,image_filename=filename,height = hei)
             
         else:
             print('Use only the extensions with  .jpg, .png, .jpeg')    
-            return render_template('upload.html')
+            
+            return render_template('upload.html',extension=True, fileupload=False)
 
     else:
         return render_template('upload.html')

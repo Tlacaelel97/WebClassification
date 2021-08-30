@@ -27,7 +27,7 @@
                         </p>
 
                         <p align="center" > <strong>Instruccions:</strong>  <br>
-                            Only upload the file with the extntion ".png", "jpg", "jpge" 
+                            Only upload the file with the extension ".png", "jpg", "jpge" 
                             for other image  extention you will be <strong>redirect</strong> to error 404 page.
                         </p>
                     </form>
@@ -61,6 +61,20 @@
     </div>
 
 </div>
+{% endif %}
+
+{% if extension %}
+
+    <div class="container" id="myrowresult">
+        <div class="row">
+            <p>
+                Invalid Extension of the Image
+            </p>
+            <p>Make sure the image extension is of following: ".png", "jpg", "jpge"</p>
+        </div>
+
+    </div>
+
 {% endif %}
 
 <style>
