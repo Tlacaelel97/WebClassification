@@ -73,6 +73,10 @@ def index():
     else:
         return render_template('upload.html')
 
+@app.route('/about/')
+def about():
+    return render_template('about.html')
+
 
 def getheight(path):
     img = skimage.io.imread(path)
